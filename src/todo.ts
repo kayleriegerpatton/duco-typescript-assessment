@@ -33,10 +33,11 @@ const convertEntity = (entity: Entity, entities: Entity[]): ConvertedEntity => {
 if (entity.refs.length > 0) {
   // Find parent, push entity to children array
   const ref = entity?.refs[0]; // *Assuming max one parent per entity
-  const childEntity = entities.find(child => child.id === ref);
-  if (childEntity) {
-    convertedEntity.children.push(convertEntity(childEntity, entities));
-    convertedEntity.children.sort(sortEntities);
+  const parentEntity = entities.find(entity => entity.id === ref);
+  if (parentEntity) {
+    const convertedParentEntity = convertEntity(parentEntity, entities)
+    convertedParentEntity.children.push(convertedEntity);
+    convertedParentEntity.children.sort(sortEntities);
   }
 }
   return convertedEntity;
