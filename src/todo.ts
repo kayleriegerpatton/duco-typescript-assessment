@@ -1,39 +1,85 @@
+import {find, sortBy} from 'lodash';
+
 import { Annotation, Entity, Input } from './types/input';
 import { ConvertedAnnotation, ConvertedEntity, Output } from './types/output';
 
-// TODO: Convert Input to the Output structure. Do this in an efficient and generic way.
-// HINT: Make use of the helper library "lodash"
 export const convertInput = (input: Input): Output => {
+
   const documents = input.documents.map((document) => {
-    // TODO: map the entities to the new structure and sort them based on the property "name"
-    // Make sure the nested children are also mapped and sorted
-    const entities = document.entities.map(convertEntity).sort(sortEntities);
+    const convertedEntities = document.entities.map(entity => convertEntity(entity, document.entities));
+    const entities = convertedEntities.sort(sortEntities);
+    // console.log("entities:", entities);
 
     // TODO: map the annotations to the new structure and sort them based on the property "index"
     // Make sure the nested children are also mapped and sorted
-    const annotations = document.annotations.map(convertAnnotation).sort(sortAnnotations);
+    const annotations = document.annotations.map(annotation => convertAnnotation(annotation, entities, document.annotations)).sort(sortAnnotations);
+    // console.log("annotations:", annotations);
     return { id: document.id, entities, annotations };
   });
-
+console.log("documents: ", JSON.stringify(documents));
   return { documents };
 };
 
-// HINT: you probably need to pass extra argument(s) to this function to make it performant.
-const convertEntity = (entity: Entity): ConvertedEntity => {
-  throw new Error('Not implemented');
+const convertEntity = (entity: Entity, entities: Entity[]): ConvertedEntity => {
+  const convertedEntity: ConvertedEntity = {
+    id: entity.id,
+    name: entity.name,
+    type: entity.type,
+    class: entity.class,
+    children: []
+  };
+
+// Check for parent ref
+if (entity.refs.length > 0) {
+  // Find parent, push entity to children array
+  const ref = entity?.refs[0]; // *Assuming max one parent per entity
+  const childEntity = entities.find(child => child.id === ref);
+  if (childEntity) {
+    convertedEntity.children.push(convertEntity(childEntity, entities));
+    convertedEntity.children.sort(sortEntities);
+  }
+}
+  return convertedEntity;
 };
 
-// HINT: you probably need to pass extra argument(s) to this function to make it performant.
-const convertAnnotation = (annotation: Annotation): ConvertedAnnotation => {
-  throw new Error('Not implemented');
+const sortEntities = (entityA: ConvertedEntity, entityB: ConvertedEntity): number => {
+  return sortBy([entityA, entityB], 'name')[0] === entityA ? 1 : -1;
 };
 
-const sortEntities = (entityA: ConvertedEntity, entityB: ConvertedEntity) => {
-  throw new Error('Not implemented');
+const convertAnnotation = (annotation: Annotation, entities:ConvertedEntity[], annotations: Annotation[]): ConvertedAnnotation => {
+  const entity = findEntityById(annotation.entityId, entities);
+const convertedAnnotation: ConvertedAnnotation = {
+  id: annotation.id,
+  entity: entity? {id: entity.id, name: entity.name} : {id: "", name:""},
+  value: annotation.value,
+  index: annotation.indices?.[0]?.start ?? null,
+  children: []
+}
+
+// check for parent ref
+if(annotation.refs.length > 0){
+  // get parent id
+  const ref = annotation?.refs[0]; // *Assuming max one parent per annotation
+  // get parent annotation
+  const parentAnnotation = annotations.find(annotation => annotation.id === ref);
+  // convert parent, push current child annotation into children array
+  if(parentAnnotation){
+    const convertedParentAnnotation = convertAnnotation(parentAnnotation, entities, annotations)
+    convertedParentAnnotation.children.push(convertedAnnotation);
+    convertedParentAnnotation.children.sort(sortAnnotations);
+  }
+}
+
+return convertedAnnotation;
+};
+
+
+const findEntityById = (entityId: string, entities: ConvertedEntity[]): ConvertedEntity | undefined => {
+  return find(entities, { id: entityId });
 };
 
 const sortAnnotations = (annotationA: ConvertedAnnotation, annotationB: ConvertedAnnotation) => {
-  throw new Error('Not implemented');
+return (annotationA.index || 0) - (annotationB.index || 0);
 };
 
 // BONUS: Create validation function that validates the result of "convertInput". Use yup as library to validate your result.

@@ -22,6 +22,6 @@ export interface ConvertedAnnotation {
   id: string;
   entity: { id: string; name: string }; // lightweight version of the entity
   value: string | number | null; // the value of the annotation
-  index: number; // the startIndex of the first index of the list of indices. Namely indices[0].startIndex, if it exists. In case it's a group (indices = []), take the earliest index of the children.
+  index: number | null; // the startIndex of the first index of the list of indices. Namely indices[0].startIndex, if it exists. In case it's a group (indices = []), take the earliest index of the children. //! If Annotation indices can be null, the ConvertedAnnotation index can be null, no? https://vscode.dev/github/kayleriegerpatton/duco-typescript-assessment/blob/master/src/types/input.ts#L79
   children: ConvertedAnnotation[]; // pay attention to this property
 }

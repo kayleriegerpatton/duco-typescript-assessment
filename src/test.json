@@ -1,0 +1,493 @@
+[
+    {
+        "id": "65afd249bd19b2cdb0eff56d",
+        "entities": [
+            {
+                "id": "65afda01db285265fae6da4d",
+                "name": "total",
+                "type": "NUMBER",
+                "class": "TEXT",
+                "children": []
+            },
+            {
+                "id": "65afd286db285265fae6c74c",
+                "name": "order number",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": []
+            },
+            {
+                "id": "65afd2a4db285265fae6c794",
+                "name": "order date",
+                "type": "DATE",
+                "class": "TEXT",
+                "children": []
+            },
+            {
+                "id": "65afd280db285265fae6c728",
+                "name": "invoice number",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": []
+            },
+            {
+                "id": "65afd2d2db285265fae6c7dc",
+                "name": "color RAL",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd42fdb285265fae6ca62",
+                        "name": "article details",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": [
+                            {
+                                "id": "65afd45bdb285265fae6ca90",
+                                "name": "article",
+                                "type": "REGULAR",
+                                "class": "RELATION",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "65afd290db285265fae6c770",
+                "name": "client number",
+                "type": "NUMBER",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd45bdb285265fae6ca90",
+                        "name": "article",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "65afd334db285265fae6c887",
+                "name": "article total",
+                "type": "NUMBER",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd45bdb285265fae6ca90",
+                        "name": "article",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "65afd2fbdb285265fae6c81b",
+                "name": "article name",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd45bdb285265fae6ca90",
+                        "name": "article",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "65afd42fdb285265fae6ca62",
+                "name": "article details",
+                "type": "REGULAR",
+                "class": "RELATION",
+                "children": [
+                    {
+                        "id": "65afd45bdb285265fae6ca90",
+                        "name": "article",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": "65afd41fdb285265fae6ca3e",
+                "name": "article description",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd42fdb285265fae6ca62",
+                        "name": "article details",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": [
+                            {
+                                "id": "65afd45bdb285265fae6ca90",
+                                "name": "article",
+                                "type": "REGULAR",
+                                "class": "RELATION",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "65afd418db285265fae6ca1a",
+                "name": "article content",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd42fdb285265fae6ca62",
+                        "name": "article details",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": [
+                            {
+                                "id": "65afd45bdb285265fae6ca90",
+                                "name": "article",
+                                "type": "REGULAR",
+                                "class": "RELATION",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "65afd3a8db285265fae6c945",
+                "name": "article color",
+                "type": "REGULAR",
+                "class": "TEXT",
+                "children": [
+                    {
+                        "id": "65afd42fdb285265fae6ca62",
+                        "name": "article details",
+                        "type": "REGULAR",
+                        "class": "RELATION",
+                        "children": [
+                            {
+                                "id": "65afd45bdb285265fae6ca90",
+                                "name": "article",
+                                "type": "REGULAR",
+                                "class": "RELATION",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "65afd45bdb285265fae6ca90",
+                "name": "article",
+                "type": "REGULAR",
+                "class": "RELATION",
+                "children": []
+            },
+            {
+                "id": "65afd317db285265fae6c863",
+                "name": "VAT number",
+                "type": "NUMBER",
+                "class": "TEXT",
+                "children": []
+            }
+        ],
+        "annotations": [
+            {
+                "id": "65afdadbdb285265fae6deaa",
+                "entity": {
+                    "id": "65afd42fdb285265fae6ca62",
+                    "name": "article details"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afdae2db285265fae6deec",
+                "entity": {
+                    "id": "65afd42fdb285265fae6ca62",
+                    "name": "article details"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afdae8db285265fae6df2e",
+                "entity": {
+                    "id": "65afd42fdb285265fae6ca62",
+                    "name": "article details"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afdaefdb285265fae6df70",
+                "entity": {
+                    "id": "65afd42fdb285265fae6ca62",
+                    "name": "article details"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afdaf8db285265fae6dfb2",
+                "entity": {
+                    "id": "65afd45bdb285265fae6ca90",
+                    "name": "article"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afdb05db285265fae6dff4",
+                "entity": {
+                    "id": "65afd45bdb285265fae6ca90",
+                    "name": "article"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afdb37db285265fae6e0ba",
+                "entity": {
+                    "id": "65afd45bdb285265fae6ca90",
+                    "name": "article"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afe077db285265fae6e64e",
+                "entity": {
+                    "id": "65afd45bdb285265fae6ca90",
+                    "name": "article"
+                },
+                "value": null,
+                "index": null,
+                "children": []
+            },
+            {
+                "id": "65afd64a45977d96c2ebc9fc",
+                "entity": {
+                    "id": "65afd280db285265fae6c728",
+                    "name": "invoice number"
+                },
+                "value": "INV 20277107",
+                "index": 55,
+                "children": []
+            },
+            {
+                "id": "65afd62145977d96c2ebc9fa",
+                "entity": {
+                    "id": "65afd286db285265fae6c74c",
+                    "name": "order number"
+                },
+                "value": "ORD 821921031",
+                "index": 57,
+                "children": []
+            },
+            {
+                "id": "65afd61c45977d96c2ebc9f9",
+                "entity": {
+                    "id": "65afd290db285265fae6c770",
+                    "name": "client number"
+                },
+                "value": 181759548,
+                "index": 59,
+                "children": []
+            },
+            {
+                "id": "65afd62545977d96c2ebc9fb",
+                "entity": {
+                    "id": "65afd2a4db285265fae6c794",
+                    "name": "order date"
+                },
+                "value": "2023/06/28",
+                "index": 60,
+                "children": []
+            },
+            {
+                "id": "65afd66a45977d96c2ebc9fd",
+                "entity": {
+                    "id": "65afd2fbdb285265fae6c81b",
+                    "name": "article name"
+                },
+                "value": "Sikkens Alpha Primer",
+                "index": 72,
+                "children": []
+            },
+            {
+                "id": "65afd71d45977d96c2ebc9ff",
+                "entity": {
+                    "id": "65afd334db285265fae6c887",
+                    "name": "article total"
+                },
+                "value": 394.68,
+                "index": 88,
+                "children": []
+            },
+            {
+                "id": "65afd73145977d96c2ebca01",
+                "entity": {
+                    "id": "65afd418db285265fae6ca1a",
+                    "name": "article content"
+                },
+                "value": "Inhoud : 10 liter",
+                "index": 91,
+                "children": []
+            },
+            {
+                "id": "65afd74745977d96c2ebca02",
+                "entity": {
+                    "id": "65afd3a8db285265fae6c945",
+                    "name": "article color"
+                },
+                "value": "Kleur : Wit",
+                "index": 96,
+                "children": []
+            },
+            {
+                "id": "65afd9b345977d96c2ebca0b",
+                "entity": {
+                    "id": "65afd2d2db285265fae6c7dc",
+                    "name": "color RAL"
+                },
+                "value": "Kleur : RAL RAL 9010 [ 10000080 ]",
+                "index": 99,
+                "children": []
+            },
+            {
+                "id": "65afd96445977d96c2ebca04",
+                "entity": {
+                    "id": "65afd2fbdb285265fae6c81b",
+                    "name": "article name"
+                },
+                "value": "Sikkens Alphacryl Pure Mat SF",
+                "index": 107,
+                "children": []
+            },
+            {
+                "id": "65afd99145977d96c2ebca08",
+                "entity": {
+                    "id": "65afd334db285265fae6c887",
+                    "name": "article total"
+                },
+                "value": 539.04,
+                "index": 124,
+                "children": []
+            },
+            {
+                "id": "65afd96945977d96c2ebca05",
+                "entity": {
+                    "id": "65afd418db285265fae6ca1a",
+                    "name": "article content"
+                },
+                "value": "Inhoud : 10 liter",
+                "index": 127,
+                "children": []
+            },
+            {
+                "id": "65afd96c45977d96c2ebca06",
+                "entity": {
+                    "id": "65afd3a8db285265fae6c945",
+                    "name": "article color"
+                },
+                "value": "Kleur : Wit",
+                "index": 132,
+                "children": []
+            },
+            {
+                "id": "65afd9bc45977d96c2ebca0c",
+                "entity": {
+                    "id": "65afd2d2db285265fae6c7dc",
+                    "name": "color RAL"
+                },
+                "value": "Kleur : RAL RAL 9010 [ 10000080 ]",
+                "index": 135,
+                "children": []
+            },
+            {
+                "id": "65afd99e45977d96c2ebca09",
+                "entity": {
+                    "id": "65afd2fbdb285265fae6c81b",
+                    "name": "article name"
+                },
+                "value": "Verzending & Afhandeling",
+                "index": 143,
+                "children": []
+            },
+            {
+                "id": "65afd9c645977d96c2ebca0e",
+                "entity": {
+                    "id": "65afd334db285265fae6c887",
+                    "name": "article total"
+                },
+                "value": 0,
+                "index": 159,
+                "children": []
+            },
+            {
+                "id": "65afd9a345977d96c2ebca0a",
+                "entity": {
+                    "id": "65afd41fdb285265fae6ca3e",
+                    "name": "article description"
+                },
+                "value": "Bezorgd thuis of op het werk",
+                "index": 162,
+                "children": []
+            },
+            {
+                "id": "65afdb269e8c1f598da55c39",
+                "entity": {
+                    "id": "65afd2fbdb285265fae6c81b",
+                    "name": "article name"
+                },
+                "value": "Betaalkosten",
+                "index": 168,
+                "children": []
+            },
+            {
+                "id": "65afd9cb45977d96c2ebca0f",
+                "entity": {
+                    "id": "65afd334db285265fae6c887",
+                    "name": "article total"
+                },
+                "value": 0,
+                "index": 182,
+                "children": []
+            },
+            {
+                "id": "65afd9c145977d96c2ebca0d",
+                "entity": {
+                    "id": "65afd41fdb285265fae6ca3e",
+                    "name": "article description"
+                },
+                "value": "MultiSafepay Payments - Maestro",
+                "index": 185,
+                "children": []
+            },
+            {
+                "id": "65afda0a45977d96c2ebca12",
+                "entity": {
+                    "id": "65afda01db285265fae6da4d",
+                    "name": "total"
+                },
+                "value": 933.72,
+                "index": 209,
+                "children": []
+            }
+        ]
+    }
+]
