@@ -1,17 +1,15 @@
-import {find, sortBy} from 'lodash';
+import {find, lowerCase, sortBy} from 'lodash';
 
 import { Annotation, Entity, Input } from './types/input';
 import { ConvertedAnnotation, ConvertedEntity, Output } from './types/output';
 
 export const convertInput = (input: Input): Output => {
-
+  const visited: string[] = [];
   const documents = input.documents.map((document) => {
-    const convertedEntities = document.entities.map(entity => convertEntity(entity, document.entities));
+    const convertedEntities = document.entities.map(entity => convertEntity(entity, document.entities, visited));
     const entities = convertedEntities.sort(sortEntities);
     // console.log("entities:", entities);
 
-    // TODO: map the annotations to the new structure and sort them based on the property "index"
-    // Make sure the nested children are also mapped and sorted
     const annotations = document.annotations.map(annotation => convertAnnotation(annotation, entities, document.annotations)).sort(sortAnnotations);
     // console.log("annotations:", annotations);
     return { id: document.id, entities, annotations };
@@ -20,7 +18,21 @@ console.log("documents: ", JSON.stringify(documents));
   return { documents };
 };
 
-const convertEntity = (entity: Entity, entities: Entity[]): ConvertedEntity => {
+const convertEntity = (entity: Entity, entities: Entity[], visited: string[]): ConvertedEntity => {
+  if (visited.includes(entity.id)) {
+    // If this entity has already been visited, return an empty converted entity
+    return {
+      id: entity.id,
+      name: entity.name,
+      type: entity.type,
+      class: entity.class,
+      children: []
+    };
+  }
+
+  // Add entity to the array of visited entities
+  visited.push(entity.id);
+
   const convertedEntity: ConvertedEntity = {
     id: entity.id,
     name: entity.name,
@@ -29,23 +41,25 @@ const convertEntity = (entity: Entity, entities: Entity[]): ConvertedEntity => {
     children: []
   };
 
-// Check for parent ref
-if (entity.refs.length > 0) {
-  // Find parent, push entity to children array
-  const ref = entity?.refs[0]; // *Assuming max one parent per entity
-  const parentEntity = entities.find(entity => entity.id === ref);
-  if (parentEntity) {
-    const convertedParentEntity = convertEntity(parentEntity, entities)
-    convertedParentEntity.children.push(convertedEntity);
-    convertedParentEntity.children.sort(sortEntities);
-  }
-}
+  // Find children of the current entity
+  const children = entities.filter(childEntity => {
+    return childEntity.refs.length > 0 && childEntity.refs[0] === entity.id;
+  });
+
+  // Recursively convert and append children
+  children.forEach(childEntity => {
+    const convertedChild = convertEntity(childEntity, entities, visited);
+    convertedEntity.children.push(convertedChild);
+  });
+
   return convertedEntity;
 };
 
+
 const sortEntities = (entityA: ConvertedEntity, entityB: ConvertedEntity): number => {
-  return sortBy([entityA, entityB], 'name')[0] === entityA ? 1 : -1;
+  return sortBy([entityA, entityB], [(entity) => lowerCase(entity.name)])[0] === entityB ? 1 : -1;
 };
+
 
 const convertAnnotation = (annotation: Annotation, entities:ConvertedEntity[], annotations: Annotation[]): ConvertedAnnotation => {
   const entity = findEntityById(annotation.entityId, entities);
